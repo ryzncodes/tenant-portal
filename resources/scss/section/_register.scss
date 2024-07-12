@@ -1,0 +1,47 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+
+    h1 {
+        letter-spacing: 0;
+        font-weight: 800;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        background-color: #4a9eda75;
+        padding: 50px;
+        border-radius: 20px;
+
+        .form-group {
+            width: 100%;
+            display: flex;
+            padding: 15px 0;
+
+            label {
+                width: 40%;
+                color: #08549d;
+                font-weight: 500;
+                letter-spacing: 0;
+            }
+            input {
+                background: transparent;
+                outline: none;
+                border: none;
+                border-bottom: #08559d9d 2px dotted;
+                width: 60%;
+                padding-bottom: 5px;
+            }
+
+            select {
+                width: 60%;
+                background-color: transparent;
+                border: transparent;
+            }
+        }
+    }
+}

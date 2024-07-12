@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| User Related Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::get('register', [UserController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [UserController::class, 'register']);
+
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
