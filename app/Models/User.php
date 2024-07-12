@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(MaintenanceRequest::class);
     }
+
+    public function leasetransactions()
+    {
+        return $this->hasMany(LeaseTransaction::class, 'tenant_id');
+    }
+
+    public function leases()
+    {
+        return $this->hasMany(Lease::class, 'tenant_id');
+    }
 }

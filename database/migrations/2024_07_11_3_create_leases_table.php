@@ -15,6 +15,7 @@ class CreateLeasesTable extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
+            $table->unsignedBigInteger('tenant_id');
             $table->decimal('rent_amount', 10, 2);
             $table->decimal('deposit_amount', 10, 2);
             $table->unsignedBigInteger('property_id');
@@ -22,6 +23,7 @@ class CreateLeasesTable extends Migration
 
             // Foreign key
             $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('tenant_id')->references('id')->on('users');
         });
     }
 
