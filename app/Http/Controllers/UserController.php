@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,9 +22,34 @@ class UserController extends Controller
         $user = $this->create($request->all());
 
         // Optionally log the user in after registration
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect()->route('home')->with('success', 'Registration successful!');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->route('home')->with('success', 'Login successful!');
+        }
+
+        // Authentication failed...
+        return redirect()->route('loginpage')->with('error', 'Invalid credentials. Please try again.');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('loginpage')->with('success', 'Logged out successfully!');
     }
 
     protected function validator(array $data)

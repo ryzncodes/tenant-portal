@@ -14,10 +14,28 @@
     <nav class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/">Login</a></li>
-            <li><a href="/">Product</a></li>
-            <li><a href="/">Test</a></li>
+            @guest
+                <li><a href="{{ route('registerpage') }}">Register</a></li>
+                <li><a href="{{ route('loginpage') }}">Login</a></li>
+            @endguest
+            @auth
+                @if (auth()->user()->role === 'tenant')
+                    <li><a href="/">Product</a></li>
+                @endif
+
+                @if (auth()->user()->role === 'property_manager')
+                    <li><a href="/">New Listing</a></li>
+                    <li><a href="/">Analytics</a></li>
+                @endif
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            @endauth
         </ul>
     </nav>
 

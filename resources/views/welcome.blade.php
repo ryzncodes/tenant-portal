@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+@section('title', 'Main Page')
 
-    @vite(['resources/scss/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body>
-    <div class="container">
-        <a href="/register">Here</a>
+@section('content')
+    <div style="display:flex; align-items:center; flex-direction:column;row-gap:20px">
+        <h1 style="font-weight: 900">Hello!</h1>
+        @auth
+            <p>Welcome, {{ Auth::user()->name }}</p>
+            <p>You are a {{ Auth::user()->role }}.</p>
+        @else
+            <p>Welcome, Guest</p>
+        @endauth
     </div>
-</body>
-
-</html>
+@endsection

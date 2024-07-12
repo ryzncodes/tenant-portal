@@ -20,6 +20,19 @@ body {
                 color: #08549d;
                 text-transform: uppercase;
             }
+
+            form {
+                button {
+                    font-weight: 600;
+                    letter-spacing: 0;
+                    font-size: 1em;
+                    color: #08549d;
+                    text-transform: uppercase;
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
         }
     }
 }
