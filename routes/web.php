@@ -35,4 +35,4 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 //     return view('home');
 // })->name('home');
 
-Route::get('/', [LeaseController::class, 'index']);
+Route::get('/', [LeaseController::class, 'index'])->name('home');

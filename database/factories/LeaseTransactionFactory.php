@@ -28,8 +28,11 @@ class LeaseTransactionFactory extends Factory
 
         return [
             'lease_id' => Lease::factory(),
-            'tenant_id' => User::where('role', 'tenant')->inRandomOrder()->first()->id,
-            'property_id' => Property::inRandomOrder()->first()->id,
+            // 'lease_id' => 1,
+            // 'tenant_id' => User::where('role', 'tenant')->inRandomOrder()->first()->id,
+            'tenant_id' => 1,
+            // 'property_id' => Property::inRandomOrder()->first()->id,
+            'property_id' => 1,
             'transaction_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'amount_paid' => $lease->rent_amount,
             'payment_method' => $this->faker->randomElement(['cash', 'bank_transfer', 'credit_card']),

@@ -18,4 +18,9 @@ class MaintenanceRequest extends Model
     {
         return $this->belongsTo(Property::class);
     }
+
+    public function lease()
+    {
+        return $this->belongsTo(Lease::class);
+    }
 }

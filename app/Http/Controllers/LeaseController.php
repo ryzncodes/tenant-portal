@@ -13,11 +13,7 @@ class LeaseController extends Controller
 {
     public function index()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id)->first();
-        // $leaseTransactions = Lease::where('tenant_id', $user->id);
-        // fidn property id @ lease table
-
+        $user = Auth::check() ? Auth::user() : null;
 
         return view('home', compact('user'));
     }

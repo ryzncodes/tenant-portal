@@ -22,4 +22,9 @@ class Lease extends Model
     {
         return $this->hasMany(LeaseTransaction::class);
     }
+
+    public function maintenanceRequests()
+    {
+        return $this->hasMany(MaintenanceRequest::class);
+    }
 }

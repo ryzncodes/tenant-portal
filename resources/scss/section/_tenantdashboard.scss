@@ -63,6 +63,24 @@ $gradient-end: #51cccc;
         }
     }
 
+    .overview-empty {
+        margin: 40px 0 60px 0;
+
+        .card-wrapper {
+            padding: 30px 15px 30px 15px;
+            color: white;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            border-radius: 5px;
+            background: linear-gradient(
+                135deg,
+                $gradient-start,
+                $gradient-middle,
+                $gradient-end
+            );
+        }
+    }
+
     .featured-text {
         h3 {
             padding-bottom: 5px;

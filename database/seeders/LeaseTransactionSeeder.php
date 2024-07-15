@@ -18,7 +18,7 @@ class LeaseTransactionSeeder extends Seeder
     public function run()
     {
         // Define the number of transactions you want to create
-        $numberOfTransactions = 50;
+        $numberOfTransactions = 1;
 
         // Use the factory to create transactions
         LeaseTransaction::factory($numberOfTransactions)->create()->each(function ($transaction) {
