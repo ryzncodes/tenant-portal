@@ -27,4 +27,9 @@ class Lease extends Model
     {
         return $this->hasMany(MaintenanceRequest::class);
     }
+
+    public function leaseDetail()
+    {
+        return $this->hasOne(LeaseDetail::class);
+    }
 }

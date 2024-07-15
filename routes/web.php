@@ -28,6 +28,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 */
 
 Route::get('/', [LeaseController::class, 'index'])->name('home');
+Route::get('/properties/{property}/available-leases', [LeaseController::class, 'availableLease'])->name('properties.available-leases');
 
 /*
 |--------------------------------------------------------------------------

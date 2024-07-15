@@ -20,7 +20,8 @@
                         <p>{{ $prop->city }}</p>
                         <p>{{ $prop->state }}</p>
                     </div>
-                    <button>Available Leases</button>
+                    <a href="{{ route('properties.available-leases', ['property' => $prop->id]) }}"
+                        class="btn btn-primary">Available Leases</a>
                 </div>
             @endforeach
         </div>
