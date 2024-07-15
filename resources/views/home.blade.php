@@ -17,7 +17,8 @@
                         <div class="overview-empty">
                             <div class="card-wrapper">
                                 <p>Haven't found a house to lease yet? Let's start by finding the perfect home for you.</p>
-                                <button>Explore Here</button>
+                                <button>
+                                    <a href="{{ route('properties') }}">Explore Here</a></button>
                             </div>
                         </div>
                     @else

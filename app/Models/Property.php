@@ -10,7 +10,7 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'address', 'city', 'state', 'zip_code',
+        'name', 'address', 'city', 'state', 'zip_code', 'image_path',
     ];
 
     public function leases()

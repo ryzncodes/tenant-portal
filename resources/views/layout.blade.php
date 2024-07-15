@@ -20,7 +20,7 @@
             @endguest
             @auth
                 @if (auth()->user()->role === 'tenant')
-                    <li><a href="/">Properties</a></li>
+                    <li><a href="{{ route('properties') }}">Properties</a></li>
                 @endif
 
                 @if (auth()->user()->role === 'property_manager')
