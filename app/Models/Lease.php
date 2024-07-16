@@ -32,4 +32,14 @@ class Lease extends Model
     {
         return $this->hasOne(LeaseDetail::class);
     }
+
+    public function tenant()
+    {
+        return $this->belongsTo(User::class, 'tenant_id');
+    }
+
+    public function propertyManager()
+    {
+        return $this->belongsTo(User::class, 'property_manager_id');
+    }
 }

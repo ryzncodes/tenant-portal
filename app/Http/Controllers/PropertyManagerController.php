@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Lease;
 use App\Models\LeaseDetail;
 use App\Models\Property;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyManagerController extends Controller
 {
     public function index()
     {
-        return view('propertymanager.menu');
+        $propertyManager = Auth::user();
+
+        return view('propertymanager.menu', compact('propertyManager'));
     }
 
     public function getCreatePropertyPage()
@@ -69,12 +73,15 @@ class PropertyManagerController extends Controller
             'property_id' => 'required|exists:properties,id',
         ]);
 
+        $propertyManagerId = auth()->id();
+
         $lease = new Lease();
         $lease->start_date = $validatedData['start_date'];
         $lease->end_date = $validatedData['end_date'];
         $lease->rent_amount = $validatedData['rent_amount'];
         $lease->deposit_amount = $validatedData['deposit_amount'];
         $lease->property_id = $validatedData['property_id'];
+        $lease->property_manager_id = $propertyManagerId;
         $lease->save();
 
         $leaseDetail = new LeaseDetail();
@@ -86,5 +93,47 @@ class PropertyManagerController extends Controller
         $leaseDetail->save();
 
         return redirect()->route('createleasepage')->with('success', 'Lease created successfully');
+    }
+
+    public function manageLeasePage()
+    {
+        $user = Auth::user();
+
+        $leases = $user->leasesManager;
+
+        return view('propertymanager.managelease', compact('leases'));
+    }
+
+    public function editLeasePage($id)
+    {
+        $properties = Property::all();
+        $lease = Lease::findOrFail($id);
+        $tenants = User::where('role', 'tenant')->get();
+
+
+        return view('propertymanager.modifylease', compact('lease', 'properties', 'tenants'));
+    }
+
+    public function editLease(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'rent_amount' => 'required|numeric',
+            'deposit_amount' => 'required|numeric',
+            'tenant_id' => 'nullable|exists:users,id',
+            'property_id' => 'required|exists:properties,id',
+        ]);
+
+        $lease = Lease::findOrFail($id);
+        $lease->start_date = $validatedData['start_date'];
+        $lease->end_date = $validatedData['end_date'];
+        $lease->rent_amount = $validatedData['rent_amount'];
+        $lease->deposit_amount = $validatedData['deposit_amount'];
+        $lease->tenant_id = $validatedData['tenant_id'];
+        $lease->property_id = $validatedData['property_id'];
+        $lease->save();
+
+        return redirect()->route('lease.editpage', $id)->with('success', 'Lease updated successfully.');
     }
 }

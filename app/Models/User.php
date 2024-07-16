@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lease::class, 'tenant_id');
     }
+
+    public function leasesManager()
+    {
+        return $this->hasMany(Lease::class, 'property_manager_id');
+    }
 }

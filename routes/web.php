@@ -53,3 +53,6 @@ Route::get('/create-property', [PropertyManagerController::class, 'getCreateProp
 Route::post('/create-property', [PropertyManagerController::class, 'createProperty'])->name('createproperty');
 Route::get('/create-lease', [PropertyManagerController::class, 'getCreateLeasePage'])->name('createleasepage');
 Route::post('/create-lease', [PropertyManagerController::class, 'createLease'])->name('createlease');
+Route::get('/manage-lease', [PropertyManagerController::class, 'manageLeasePage'])->name('manageleasepage');
+Route::get('/modify-lease/{id}', [PropertyManagerController::class, 'editLeasePage'])->name('lease.editpage');
+Route::put('/modify-lease/{id}', [PropertyManagerController::class, 'editLease'])->name('lease.edit');

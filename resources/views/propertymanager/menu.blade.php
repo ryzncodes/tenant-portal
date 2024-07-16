@@ -31,19 +31,23 @@
                 <div class="summary-analytics">
                     <div>
                         <p>Total Leases</p>
-                        <p>NUMBER_LEASES</p>
+                        <p>{{ $propertyManager->leasesManager->count() }}</p>
                     </div>
                     <div>
                         <p>Occupied Leases</p>
-                        <p>NUMBER_LEASES_WITH_TENANT_ID</p>
+                        <p>{{ $propertyManager->leasesManager->whereNotNull('tenant_id')->count() }}</p>
                     </div>
                     <div>
                         <p>Free Leases</p>
-                        <p>NUMBER_LEASES_WITHOUT_TENANT_ID</p>
+                        <p>{{ $propertyManager->leasesManager->whereNull('tenant_id')->count() }}</p>
                     </div>
                 </div>
                 <div>
-                    <button>Manage Leases</button>
+                    <button>
+                        <a href="{{ route('manageleasepage') }}">
+                            Manage Leases
+                        </a>
+                    </button>
                     <button>
                         <a href="{{ route('createleasepage') }}">
                             Create A Lease
