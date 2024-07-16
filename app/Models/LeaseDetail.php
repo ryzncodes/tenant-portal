@@ -5,19 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MaintenanceRequest extends Model
+class LeaseDetail extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function property()
-    {
-        return $this->belongsTo(Property::class);
-    }
+    protected $fillable = [
+        'bedrooms', 'bathrooms', 'furnished', 'square_feet',
+    ];
 
     public function lease()
     {

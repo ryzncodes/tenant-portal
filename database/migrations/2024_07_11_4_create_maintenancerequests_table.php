@@ -15,6 +15,7 @@ class CreateMaintenanceRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('property_id');
+            $table->unsignedBigInteger('lease_id')->nullable();
             $table->text('description');
             $table->enum('status', ['pending', 'in_progress', 'resolved'])->default('pending');
             $table->integer('priority')->nullable();
@@ -24,6 +25,7 @@ class CreateMaintenanceRequestsTable extends Migration
             // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('lease_id')->references('id')->on('leases')->onDelete('set null');
         });
     }
 

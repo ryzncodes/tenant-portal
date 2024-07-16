@@ -1,18 +1,58 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LeaseController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyManagerController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| User Related Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+*/
+//Routes For Registration
+Route::get('register', [UserController::class, 'showRegistrationForm'])->name('registerpage');
+Route::post('register', [UserController::class, 'register'])->name('register');
+
+//Routes For Login & Logout
+Route::get('login', [UserController::class, 'showLoginForm'])->name('loginpage');
+Route::post('login', [UserController::class, 'login'])->name('login');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+/*
+|--------------------------------------------------------------------------
+| Lease Related Routes
+|--------------------------------------------------------------------------
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LeaseController::class, 'index'])->name('home');
+Route::get('/properties/{property}/available-leases', [LeaseController::class, 'availableLease'])->name('properties.available-leases');
+
+/*
+|--------------------------------------------------------------------------
+| Properties Related Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
+
+
+/*
+|--------------------------------------------------------------------------
+| Property-Manager Related Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::get('/properties-and-leases', [PropertyManagerController::class, 'index'])->name('showpropleasemenu');
+Route::get('/create-property', [PropertyManagerController::class, 'getCreatePropertyPage'])->name('createproppage');
+Route::post('/create-property', [PropertyManagerController::class, 'createProperty'])->name('createproperty');
+Route::get('/create-lease', [PropertyManagerController::class, 'getCreateLeasePage'])->name('createleasepage');
+Route::post('/create-lease', [PropertyManagerController::class, 'createLease'])->name('createlease');
+Route::get('/manage-lease', [PropertyManagerController::class, 'manageLeasePage'])->name('manageleasepage');
+Route::get('/modify-lease/{id}', [PropertyManagerController::class, 'editLeasePage'])->name('lease.editpage');
+Route::put('/modify-lease/{id}', [PropertyManagerController::class, 'editLease'])->name('lease.edit');
