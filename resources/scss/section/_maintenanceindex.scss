@@ -1,0 +1,27 @@
+/* Basic table styling */
+.maintenance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+
+    th,
+    td {
+        padding: 12px 15px;
+        border: 1px solid #dddddd;
+        text-align: left;
+    }
+
+    thead {
+        background-color: #f5f5f5;
+        color: #333333;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f0f0f0;
+    }
+
+    tbody tr:hover {
+        background-color: #e0e0e0;
+    }
+}
