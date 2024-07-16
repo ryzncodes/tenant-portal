@@ -24,7 +24,7 @@
                 @endif
 
                 @if (auth()->user()->role === 'property_manager')
-                    <li><a href="/">New Listing</a></li>
+                    <li><a href="{{ route('showpropleasemenu') }}">Properties & Leases</a></li>
                     <li><a href="/">Analytics</a></li>
                 @endif
                 <li>
